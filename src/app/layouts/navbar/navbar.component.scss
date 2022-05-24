@@ -1,0 +1,31 @@
+.nav-body {
+    height: 100px;
+    padding: 0 16px 0 16px;
+    display: grid;
+    background-color: navy;
+    grid-template-columns: 500px auto 60px;
+    align-items: center;
+    justify-items: center;
+    color: #edf5e1;
+    .site-title {
+        align-items: center;
+        justify-items: center;
+        h3 {
+            cursor: pointer;
+            padding-right: 190px;
+            color: WHITE;
+            font-size: 26px;
+            // font-family: 'Open Sans', sans-serif;
+            // font-weight: 300;
+            // line-height: 40px;
+            font-family: 'Advent Pro';
+            font-weight: normal;
+            line-height: 48px;
+            // padding-bottom: 10px;
+        }
+    }
+    h5 {
+        margin: 0 8px 0 8px;
+        cursor: pointer;
+    }
+}
