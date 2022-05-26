@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import {Observable, pipe} from 'rxjs';
+import { User } from 'src/app/models/user'
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -8,10 +13,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+user: User ={
+  id: '',
+  email: '',
+  name: '',
+  password: '',
+}
+  
   constructor(
     private router: Router,
-    private fb: FormBuilder
-  ) {}
+    private fb: FormBuilder,
+    private userService: UserService
+  ) {
+
+  }
+
+  addUser(user: User){
+
+  }
 
   // registerForm: FormGroup = new FormGroup({
   //   fCName: new FormControl('', Validators.required),
@@ -54,7 +73,11 @@ export class RegisterComponent implements OnInit {
 
   error: string = '';
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.userService.getUsers().subscribe(User => {
+      console.log(User);
+    });
+  }
 
   nav(destination: string) {
     this.router.navigate([destination]);
@@ -79,21 +102,15 @@ export class RegisterComponent implements OnInit {
       var payload: {
         name: string;
         email: string;
-        age: number;
         password: string;
       };
       payload = {
         name: this.f['fCName'].value,
         email: this.f['fCEmail'].value,
-        age: this.f['fCAge'].value,
         password: this.f['fCPassword'].value,
       };
       console.log(payload);
-      // this.api
-      //   .post(environment.API_URL + '/user/register', payload)
-      //   .toPromise();
-
-        this.nav('home');
+      this.userService.addUser(payload);
     }
   }
 
@@ -104,5 +121,9 @@ export class RegisterComponent implements OnInit {
   get password() {
     return this.registerForm.controls['fCPassword'];
   }
+
+  // deleteBooking(Flights){
+  //   this.flightService.deleteItem(Flights);
+  // } for Flights
 
 }

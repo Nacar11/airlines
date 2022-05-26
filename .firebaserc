@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "airlines-bc68c",
+    "airline": "airlines-booking-system-628a0"
+  },
+  "targets": {
+    "airlines-bc68c": {
+      "hosting": {
+        "airlines": [
+          "airlines-bc68c"
+        ]
+      }
+    }
+  }
+}

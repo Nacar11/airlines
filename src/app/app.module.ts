@@ -12,6 +12,8 @@ import { LoginComponent } from './login/login.component';
 import { FlightsComponent } from './flights/flights.component';
 import { RegisterComponent } from './register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {UserService} from './services/user.service';
+import { HttpClientModule } from '@angular/common/http'
 
 
 @NgModule({
@@ -22,6 +24,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RegisterComponent,  
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -32,7 +35,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     provideDatabase(() => getDatabase()),
     NgbModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
