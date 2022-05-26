@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
+import { User } from '@angular/fire/auth';
+
+
 
 @Component({
   selector: 'app-login',
@@ -8,11 +13,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  errorMessage = 'Login Failed';
+  constructor(private router: Router, private userService: UserService) { }
+  private users: Map<string, User> = new Map<string, User>();
 
-  constructor(private router: Router) { }
-
-  ngOnInit(): void {
+  ngOnInit() {
+    users: this.userService.getUsers().subscribe();
   }
+  
   fcEmail = new FormControl();
   fcPassword = new FormControl();
   requestResult = '';
@@ -25,6 +33,13 @@ export class LoginComponent implements OnInit {
   //       this.nav('home');
   //     }
   //     }
+
+  login(){
+
+  }
+
+
+
 
   nav(destination:string){
     this.router.navigate([destination]);
