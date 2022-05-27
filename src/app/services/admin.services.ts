@@ -15,7 +15,7 @@ export class AdminService {
         this.flight = this.flightCollection.snapshotChanges().pipe(map(changes => {
             return changes.map(a => {
                 const data = a.payload.doc.data() as Flight;
-                data.code = a.payload.doc.id;
+                data.id = a.payload.doc.id;
                 return data;
             });
         }));
@@ -29,9 +29,9 @@ export class AdminService {
         this.flightCollection.add(flight);
     }
 
-    cancelFlight(flight: Flight){
-        this.flightDoc = this.afs.doc(`Flight/${flight.code}`);
-        this.flightDoc.delete();
+    cancelFlight(id: any){
+        this.flightDoc = this.afs.doc(`Flight/${id}`);
+        this.flightDoc.update({status: 'Cancelled'});
     }
 
     
