@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Airlines</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">GN AIRLINES</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" justify-content-center id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" (click)="nav('flights')">Flights</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href ="#">Login</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+  <div id="content">
+    <div class="card" style="width: 23.5rem">
+        <div class="card-header">Add Flight</div>
+
+        <div class="card-body">
+            <form class="inputs" [formGroup]="addFlightForm" (ngSubmit)="onSubmit()">
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Destination"
+                        formControlName="fCDestination" />
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Origin"
+                        formControlName="fCOrigin" />
+                    <input type="datetime-local" class="form-control" id="exampleFormControlInput1"
+                         formControlName="fCDeparture" />
+                    <input type="datetime-local" class="form-control" id="exampleFormControlInput1" 
+                        formControlName="fCArrival" />
+                    <input type="text" class="form-control" id="exampleFormControlInput1"
+                        placeholder="Flight Code" formControlName="fCCode" />
+                </div>
+                <!-- <p *ngIf="password.errors && password.touched">
+                    Password length should be atleast 8 characters
+                </p>
+                <p *ngIf="
+            f['fCPassword'].value != f['fCPassword'].value && 
+            ((f['fCPassword'].touched && f['fCPassword'].dirty) && (f['fCPassword'].touched))
+          ">
+                    Passwords do not match
+                </p> -->
+                <div class="buttons">
+                    <button class="btn btn-primary" type="submit" [disabled]="!addFlightForm.valid">
+                        Add Flight</button>
+                    <button class="btn btn-primary" (click)="nav('login')">Back to Home</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- <div id="content">
+    <div class="card">
+        <div class="card-header">View Flights</div>
+        <div class="card-body">
+
+            <div class="form-outline mb-4" >
+                <input type="search" class="form-control" id="datatable-search-input"  placeholder="Search" (change)="getData(searchVal.value)" #searchVal>
+              </div>
+              <div class="text-center" *ngIf="users == 0">
+                <div class="spinner-border" role="status">
+                </div>
+              </div>
+              <div id="datatable" *ngIf="users != 0">
+                <table class="table table-hover table-dark" style="overflow:auto; height: 480px;" >
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th></th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Email</th>
+                        <th scope ="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of users.data; index as i">
+                        <th scope="row">{{user.id}}</th>
+                        <td colspan="2">{{user.name}}</td>
+                        <td>{{user.age}}</td>
+                        <td>{{user.email}}</td>
+                        <td>
+                        <a (click)="deleteUser(i)"><img src="../assets/images/delete.svg" /></a>
+                        <a (click)="editCurrentUser(i)"><img src="../assets/images/edit.svg"/></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                  </table>
+              </div>
+            <div class="buttons">
+                <a class="btn btn-primary" (click)="nav('login')">Logout</a>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+</body>
+</html>
+
+
+

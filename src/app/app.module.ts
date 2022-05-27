@@ -13,7 +13,9 @@ import { FlightsComponent } from './flights/flights.component';
 import { RegisterComponent } from './register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {UserService} from './services/user.service';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { AdminComponent } from './admin/admin.component'
+import { AdminService } from './services/admin.services';
 
 
 @NgModule({
@@ -21,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http'
     AppComponent,
     LoginComponent,
     FlightsComponent,
-    RegisterComponent,  
+    RegisterComponent,
+    AdminComponent,  
   ],
   imports: [
     HttpClientModule,
@@ -35,7 +38,7 @@ import { HttpClientModule } from '@angular/common/http'
     provideDatabase(() => getDatabase()),
     NgbModule
   ],
-  providers: [UserService],
+  providers: [UserService, AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
