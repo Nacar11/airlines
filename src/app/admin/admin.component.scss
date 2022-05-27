@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Khula:wght@300;400;600;700;800&display=swap");
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    line-height: 28px;
+    color: white;
+  }
+
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .navbar-brand{
+    color: white;
+  }
+  .navbar-collapse{
+    justify-content: right;
+  }
+
+  nav{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    height: 86px;
+    padding: 0 24px;
+    margin: 0 auto;
+    background-color: #001e60;
+  }
+
+  .navbar-nav .nav-link.active, .navbar-nav .show>.nav-link {
+    color: white;
+  }
+  .navbar-nav .nav-link {
+    color: white;
+  }
+
+#content {
+padding: 150px 24px;
+  background-color: white;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: "Khula", sans-serif;
+}
+
+.card {
+  width: 374px;
+  margin-left: 670px;
+  margin-right: auto;
+  box-shadow: 0 0 16px 14px rgba(0, 0, 0, 8%);
+  background-color: grey;
+}
+label {
+  margin-left: 5px;
+  margin-top: 1px;
+  color: #fff;
+}
+
+.btn.btn-primary {
+  margin-left: 5px;
+  margin-right: 15px;
+  width: 150px;
+  margin-bottom: 5px;
+  border-radius: 200px;
+  font-weight: 700;
+  line-height: 26px;
+  background-image: linear-gradient(84deg, #f28b03, #f06500);
+  position: relative;
+}
+
+p {
+  margin-left: 15px;
+}
+p a {
+  text-decoration: none;
+}
+label a {
+  text-decoration: none;
+  margin-left: 50px;
+  color: #fff;
+}
+
+#exampleFormControlInput1 {
+  width: 342px;
+  margin-bottom: 10px;
+}
+
+.checkbox {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.card-header {
+  font-weight: bold;
+  text-align: left;
+  color: #fff;
+}
+
+img {
+  margin-top: 24px;
+  margin-left: 25px;
+}
+
+.buttons {
+  margin-bottom: 25px;
+  text-align: center;
+}
