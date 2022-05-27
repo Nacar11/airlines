@@ -21,6 +21,7 @@ export class AdminComponent implements OnInit {
     status: '',
   }
   flightsArray=[];
+  users=[];
     
     constructor(
       private firestore:AngularFirestore,
@@ -75,6 +76,11 @@ export class AdminComponent implements OnInit {
           return { id: e.payload.doc.id, destination: e.payload.doc.data()["destination"], origin: e.payload.doc.data()["origin"], departure: e.payload.doc.data()["departure"], arrival: e.payload.doc.data()["arrival"], code: e.payload.doc.data()["code"], status: e.payload.doc.data()["status"]}
         })
   });
+  this.firestore.collection("User").snapshotChanges().subscribe((data) => {
+    this.users = data.map(e => {
+      return { id: e.payload.doc.id, name: e.payload.doc.data()["name"], email: e.payload.doc.data()["email"],}
+    })
+});
     }
   
     nav(destination: string) {
