@@ -64,51 +64,67 @@
         </div>
     </div>
 </div>
+<!-- 
+<div id="content">
+    <div class="card" style="width: 23.5rem">
+        <div class="card-header">Cancel Flight</div>
 
-<!-- <div id="content">
+        <div class="card-body">
+            <form class="inputs" [formGroup]="cancelFlightForm" (ngSubmit)="cancelFlight()">
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="exampleFormControlInput1"
+                        placeholder="Flight Code" formControlName="fCCancelCode" />
+                </div>
+
+                <div class="buttons">
+                    <button class="btn btn-primary" type="submit" [disabled]="!cancelFlightForm.valid">
+                        Cancel Flight</button>
+                    <button class="btn btn-primary" (click)="nav('login')">Back to Home</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> -->
+
+<div id="content">
     <div class="card">
         <div class="card-header">View Flights</div>
         <div class="card-body">
 
-            <div class="form-outline mb-4" >
-                <input type="search" class="form-control" id="datatable-search-input"  placeholder="Search" (change)="getData(searchVal.value)" #searchVal>
-              </div>
-              <div class="text-center" *ngIf="users == 0">
+              <!-- <div class="text-center" *ngIf="flight == 0">
                 <div class="spinner-border" role="status">
                 </div>
-              </div>
-              <div id="datatable" *ngIf="users != 0">
+              </div> -->
+              <div id="datatable">
                 <table class="table table-hover table-dark" style="overflow:auto; height: 480px;" >
                     <thead>
                       <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Name</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Origin</th>
                         <th></th>
-                        <th scope="col">Age</th>
-                        <th scope="col">Email</th>
-                        <th scope ="col">Actions</th>
+                        <th scope="col">Departure</th>
+                        <th scope="col">Arrival</th>
+                        <th scope ="col">Status</th>
+                        <th scope ="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let user of users.data; index as i">
-                        <th scope="row">{{user.id}}</th>
-                        <td colspan="2">{{user.name}}</td>
-                        <td>{{user.age}}</td>
-                        <td>{{user.email}}</td>
+                        <tr *ngFor="let flights of flightsArray; index as i">
+                        <th scope="row">{{flights.destination}}</th>
+                        <td colspan="2">{{flights.origin}}</td>
+                        <td>{{flights.departure}}</td>
+                        <td>{{flights.arrival}}</td>
+                        <td>{{flights.status}}</td>
                         <td>
-                        <a (click)="deleteUser(i)"><img src="../assets/images/delete.svg" /></a>
-                        <a (click)="editCurrentUser(i)"><img src="../assets/images/edit.svg"/></a>
+                        <a (click)="cancelFlight(i)"><img src="https://cdn-icons-png.flaticon.com/24/458/458594.png" /></a>
                         </td>
                     </tr>
                     </tbody>
                   </table>
               </div>
-            <div class="buttons">
-                <a class="btn btn-primary" (click)="nav('login')">Logout</a>
-            </div>
         </div>
     </div>
-</div> -->
+</div>
 
 
 
