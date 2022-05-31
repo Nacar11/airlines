@@ -19,7 +19,7 @@ user: User ={
   name: '',
   password: '',
 }
-  
+  auth: Auth;
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -111,8 +111,16 @@ user: User ={
       };
       console.log(payload);
       this.userService.addUser(payload);
+
+      alert("Successfully Created Account, Going Back to Login Page.")
+      this.nav("login");
     }
+
+
   }
+
+
+
 
   get f() {
     return this.registerForm.controls;
