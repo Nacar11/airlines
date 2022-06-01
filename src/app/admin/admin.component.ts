@@ -67,6 +67,9 @@ export class AdminComponent implements OnInit {
     error: string = '';
   
     ngOnInit() {
+      // if(!this.addFlightForm.valid){
+      // console.log(this.addFlightForm);
+      // }
       this.adminService.viewFlights().subscribe(Flight => {
         console.log(Flight);   
       });
