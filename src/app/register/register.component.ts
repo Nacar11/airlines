@@ -111,6 +111,7 @@ user: User ={
       };
       console.log(payload);
       this.userService.addUser(payload);
+      this.nav('login');
     }
   }
 
