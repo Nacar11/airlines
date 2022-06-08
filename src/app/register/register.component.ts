@@ -4,7 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
 import {Observable, pipe} from 'rxjs';
-import { User } from 'src/app/models/user'
+import { User } from '../models/User'
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -122,9 +122,5 @@ user: User ={
   get password() {
     return this.registerForm.controls['fCPassword'];
   }
-
-  // deleteBooking(Flights){
-  //   this.flightService.deleteItem(Flights);
-  // } for Flights
 
 }

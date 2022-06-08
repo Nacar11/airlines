@@ -18,13 +18,13 @@
           <div class="collapse navbar-collapse" justify-content-center id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" (click)="nav('admin/viewUsers')">View Users</a>
+                <a class="nav-link" (click)="nav('admin/viewUsers')">View Users</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" (click)="nav('admin/create')">Create Flight</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" (click)="nav('admin/viewFlights')">View Flights</a>
+                <a class="nav-link active" (click)="nav('admin/viewFlights')">View Flights</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" (click)="nav('flights')">Logout</a>
@@ -36,7 +36,7 @@
 
 <div id="content">
     <div class="card">
-        <div class="card-header">All Users</div>
+        <div class="card-header">View Flights</div>
         <div class="card-body">
 
               <!-- <div class="text-center" *ngIf="flight == 0">
@@ -47,16 +47,25 @@
                 <table class="table table-hover table-dark" style="overflow:auto; height: 480px;" >
                     <thead>
                       <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Booked Flight</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Origin</th>
+                        <th></th>
+                        <th scope="col">Departure</th>
+                        <th scope="col">Arrival</th>
+                        <th scope ="col">Status</th>
+                        <th scope ="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let user of users; index as i">
-                        <td>{{user.name}}</td>
-                        <td>{{user.email}}</td>
-                        <td>{{user.bookedFlights}}</td>
+                        <tr *ngFor="let flights of flightsArray; index as i">
+                        <th scope="row">{{flights.destination}}</th>
+                        <td colspan="2">{{flights.origin}}</td>
+                        <td>{{flights.departure}}</td>
+                        <td>{{flights.arrival}}</td>
+                        <td>{{flights.status}}</td>
+                        <td>
+                        <a (click)="cancelFlight(i)"><img src="https://cdn-icons-png.flaticon.com/24/458/458594.png" /></a>
+                        </td>
                     </tr>
                     </tbody>
                   </table>

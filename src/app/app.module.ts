@@ -16,6 +16,8 @@ import {UserService} from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminComponent } from './admin/admin.component'
 import { AdminService } from './services/admin.services';
+import { CreateFlightComponent } from './create-flight/create-flight.component';
+import { ViewFlightsComponent } from './view-flights/view-flights.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { AdminService } from './services/admin.services';
     LoginComponent,
     FlightsComponent,
     RegisterComponent,
-    AdminComponent,  
+    AdminComponent,
+    CreateFlightComponent,
+    ViewFlightsComponent,  
   ],
   imports: [
     HttpClientModule,
