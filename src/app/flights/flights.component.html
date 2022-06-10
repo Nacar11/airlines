@@ -32,11 +32,12 @@
     <section id="flights" class="section flights-section">
         <h2>Flights</h2>
 
-        <article class = "flights">
-    <h3 class ="flights-destination">Manila, Philippines <strong>></strong> Cebu, Philippines</h3>
-    <p class ="flights-departure">Departure time: 5/26/2022, 7:00pm</p>
-    <p class ="flights-arrival">Arrival time: 5/26/2022, 10:00pm</p>
-    <p class ="flights-code">E29</p>
+        <article *ngFor="let flights of flightsArray; index as i" class = "flights">
+    <h3 class ="flights-destination">{{flights.destination}} <strong>></strong> {{flights.origin}}</h3>
+    <p class ="flights-departure">Departure Time: {{flights.departure}}</p>
+    <p class ="flights-arrival">Arrival Time: {{flights.arrival}}</p>
+    <p class ="flights-code">Flight Code: {{flights.code}}</p>
+    <a (click)="bookFlight(i)"><img src="https://cdn-icons-png.flaticon.com/24/458/458594.png" /></a>
         </article>
     </section>
 

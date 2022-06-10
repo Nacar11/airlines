@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/compat/firestore/'
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { User } from 'src/app/models/user';
+import { User } from '../models/User';
 
 
 
@@ -42,6 +42,12 @@ export class UserService {
     deleteUser(user: User){
         this.userDoc = this.afs.doc(`User/${user.id}`);
         this.userDoc.delete();
+    }
+
+    bookFlight(_code: any, id:any){
+        console.log(id);
+        this.userDoc = this.afs.doc(`User/${id}`);
+        this.userDoc.update({bookedFlights: _code});
     }
 
     
