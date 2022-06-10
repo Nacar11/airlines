@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Flight } from '../models/flights';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AdminService {
    flightCollection: AngularFirestoreCollection<Flight>;
     flight: Observable<Flight[]>;

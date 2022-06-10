@@ -36,5 +36,6 @@ export class AdminComponent implements OnInit {
     nav(destination: string) {
       this.router.navigate([destination]);
     }
+    
   
   }
