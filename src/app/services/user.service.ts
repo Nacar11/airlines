@@ -5,9 +5,7 @@ import { map } from 'rxjs/operators';
 import { User } from '../models/User';
 
 
-
-
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class UserService {
    userCollection: AngularFirestoreCollection<User>;
     user: Observable<User[]>;
@@ -15,14 +13,14 @@ export class UserService {
 
     constructor(public afs: AngularFirestore) {
         this.userCollection = this.afs.collection('User');
-        // this.user = this.afs.collection('User').valueChanges();
-        this.user = this.userCollection.snapshotChanges().pipe(map(changes => {
-            return changes.map(a => {
-                const data = a.payload.doc.data() as User;
-                data.id = a.payload.doc.id;
-                return data;
-            });
-        }));
+        this.user = this.afs.collection('User').valueChanges();
+        // this.user = this.userCollection.snapshotChanges().pipe(map(changes => {
+        //     return changes.map(a => {
+        //         const data = a.payload.doc.data() as User;
+        //         data.id = a.payload.doc.id;
+        //         return data;
+        //     });
+        // }));
 
 
     }
