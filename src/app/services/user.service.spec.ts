@@ -5,6 +5,7 @@ import { from } from 'rxjs/internal/observable/from';
 import { TestBed } from '@angular/core/testing';
 import { EMPTY } from 'rxjs/internal/observable/empty';
 import {Users} from '../mockdata/user'
+import { user } from '@angular/fire/auth';
 
 const input: User[][] = [
   [
@@ -13,7 +14,7 @@ const input: User[][] = [
 ];
 
 
-fdescribe('UserService', () => {
+describe('UserService', () => {
     let service: UserService;
     let afs: AngularFirestore;
 
@@ -59,6 +60,15 @@ fdescribe('UserService', () => {
         });
         expect(data).toEqual(Users);
     }); 
+
+ 
+    
+
+
+
+
+
+
 
 })
 
