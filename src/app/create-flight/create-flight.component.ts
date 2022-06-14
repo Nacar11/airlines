@@ -58,10 +58,6 @@ export class CreateFlightComponent implements OnInit {
         },
       ],
     });
-
-    cancelFlightForm = this.fb.group({
-      fCCancelCode: ['', Validators.required],
-    });
   
     error: string = '';
   
@@ -110,9 +106,6 @@ export class CreateFlightComponent implements OnInit {
       return this.addFlightForm.controls;
     }
 
-    get c() {
-      return this.cancelFlightForm.controls;
-    }
 
 
   

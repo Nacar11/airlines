@@ -10,19 +10,11 @@ import { from } from 'rxjs/internal/observable/from';
 import { of } from 'rxjs/internal/observable/of';
 import { Observable } from 'rxjs/internal/Observable';
 import { Router } from '@angular/router';
+import { Users } from '../mockdata/user';
+import { By } from '@angular/platform-browser';
 
-const input: User[][] = [
-  [
-    {
-      id: 'eHaPwHvuuiOaLs8r4iXf',
-      email: 'christian@gmail.com',
-      name: 'james',
-      bookedFlights: '44A',
-    },
-  ],
-];
 
-const data = from(input);
+const data = from(Users);
 
 const collectionStub = {
   snapshotChanges: jasmine.createSpy('snapshotChanges').and.returnValue(data)
@@ -81,7 +73,10 @@ fdescribe('AdminComponent', () => {
 
   it('should contain users', () => {
 
+      component.users = Users;
+      expect(component.users).toEqual(Users);
   });
+
   it(`should navigate to destination`, () => {
     
     component.nav("login");
@@ -89,6 +84,37 @@ fdescribe('AdminComponent', () => {
     expect(routerSpy.navigate).toHaveBeenCalled();
  });
 
+ it(`should list all users`, () => {
+  component.users = [];
+  fixture.detectChanges();
+
+  const listLength = 1;
+  for(let i = 0; i < listLength; i ++) {
+    component.users = [{
+      email: 'christian@gmail.com',
+      name: 'james',
+      bookedFlights: '44A',
+    }];
+
+
+  }
+  fixture.detectChanges();
+  const userEls = fixture.debugElement.queryAll(By.css('tr.userList'));
+  expect(userEls.length).toEqual(listLength);
+  userEls.forEach((userEl, index) => {
+    const name = userEl.query(By.css('td.name'));
+    const email = userEl.query(By.css('td.email'));
+    const bFlights = userEl.query(By.css('td.bFlights'));
+    expect(name).toBeTruthy();
+    expect(name.nativeElement.innerText).toEqual(component.users[index].name);
+    expect(email).toBeTruthy();
+    expect(email.nativeElement.innerText).toEqual(component.users[index].email);
+    expect(bFlights).toBeTruthy();
+    expect(bFlights.nativeElement.innerText).toEqual(component.users[index].bookedFlights);
+
+});
+
 
  
-});
+});})
+

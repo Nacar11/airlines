@@ -6,6 +6,7 @@ import { User } from '../models/User';
 import { from } from 'rxjs/internal/observable/from';
 import { RegisterComponent } from './register.component';
 import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 
 
@@ -32,6 +33,7 @@ const userService = {
 
 
 fdescribe('RegisterComponent', () => {
+  let routerSpy = {navigate: jasmine.createSpy('navigate')};
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
   let registerSpy: any;
@@ -46,6 +48,10 @@ fdescribe('RegisterComponent', () => {
       declarations: [ RegisterComponent ],
       imports: [RouterTestingModule, CommonServiceModuleStubModule],
       providers: [
+        { 
+          provide: Router, 
+          useValue: routerSpy
+         },
         {
           provide: RegisterComponent,
           useValue: component,
@@ -132,6 +138,13 @@ fdescribe('RegisterComponent', () => {
   //   errors = pass2.errors;
   //   expect(errors['required']).toBeTruthy();
   // });
+  it(`should navigate to destination`, () => {
+    component.nav("login");
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['login']);
+    expect(routerSpy.navigate).toHaveBeenCalled();
+ });
+
+
   it('should test form validity(name)', () => {
     let name = component.registerForm.controls['fCName'];
     

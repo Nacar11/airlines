@@ -57,12 +57,12 @@
                       </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let flights of flightsArray; index as i">
-                        <th scope="row">{{flights.destination}}</th>
-                        <td colspan="2">{{flights.origin}}</td>
-                        <td>{{flights.departure}}</td>
-                        <td>{{flights.arrival}}</td>
-                        <td>{{flights.status}}</td>
+                        <tr class = "Flights" *ngFor="let flights of flightsArray; index as i">
+                        <th class = "fDestination" scope="row">{{flights.destination}}</th>
+                        <td  class = "fOrigin" colspan="2">{{flights.origin}}</td>
+                        <td class = "fDeparture">{{flights.departure}}</td>
+                        <td class = "fArrival">{{flights.arrival}}</td>
+                        <td class = "fStatus">{{flights.status}}</td>
                         <td>
                         <a (click)="cancelFlight(i)"><img src="https://cdn-icons-png.flaticon.com/24/458/458594.png" /></a>
                         </td>
