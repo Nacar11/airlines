@@ -20,6 +20,7 @@ export class ViewFlightsComponent implements OnInit {
     status: '',
   }
   flightsArray=[];
+  component: any;
     
     constructor(
       private firestore:AngularFirestore,

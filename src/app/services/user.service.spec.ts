@@ -5,12 +5,7 @@ import { from } from 'rxjs/internal/observable/from';
 import { TestBed } from '@angular/core/testing';
 import { EMPTY } from 'rxjs/internal/observable/empty';
 import {Users} from '../mockdata/user'
-
-const input: User[][] = [
-  [
-
-  ],
-];
+import { user } from '@angular/fire/auth';
 
 
 fdescribe('UserService', () => {
@@ -51,14 +46,18 @@ fdescribe('UserService', () => {
         expect(data).toEqual(Users);
     }); 
 
-    it('should add users', (done: DoneFn)  => {
-        let data = [];  
-        service.getUsers().subscribe((value) =>  {
-            data.push(value);
-            done();
-        });
-        expect(data).toEqual(Users);
+    it('should add users', ()  => {
+
     }); 
+
+ 
+    
+
+
+
+
+
+
 
 })
 

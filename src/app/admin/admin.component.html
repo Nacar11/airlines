@@ -53,10 +53,10 @@
                       </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let user of users; index as i">
-                        <td>{{user.name}}</td>
-                        <td>{{user.email}}</td>
-                        <td>{{user.bookedFlights}}</td>
+                        <tr class ="userList" *ngFor="let user of users; index as i">
+                        <td class ="name">{{user.name}}</td>
+                        <td class ="email">{{user.email}}</td>
+                        <td class ="bFlights">{{user.bookedFlights}}</td>
                     </tr>
                     </tbody>
                   </table>
