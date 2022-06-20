@@ -18,10 +18,10 @@
       <div class="collapse navbar-collapse" justify-content-center id="navbarSupportedContent">
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Flights</a>
+            <a class="nav-link active" aria-current="page">Flights</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" (click)="nav('login')">Login</a>
+            <a class="nav-link" (click)="nav('login')">Logout</a>
           </li>
         </ul>
       </div>
@@ -32,14 +32,16 @@
     <section id="flights" class="section flights-section">
         <h2>Flights</h2>
 
-        <article *ngFor="let flights of flightsArray; index as i" class = "flights">
+        <article class = "flights" *ngFor="let flights of flightsArray; index as i" >
     <h3 class ="flights-destination">{{flights.destination}} <strong>></strong> {{flights.origin}}</h3>
     <p class ="flights-departure">Departure Time: {{flights.departure}}</p>
     <p class ="flights-arrival">Arrival Time: {{flights.arrival}}</p>
     <p class ="flights-code">Flight Code: {{flights.code}}</p>
     <a (click)="bookFlight(i)"><img src="https://cdn-icons-png.flaticon.com/24/458/458594.png" /></a>
         </article>
-    </section>
+        
+    </section>    
+
 
 </body>
 </html>

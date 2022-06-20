@@ -11,6 +11,7 @@ import { AdminService } from '../services/admin.services';
   styleUrls: ['./view-flights.component.scss']
 })
 export class ViewFlightsComponent implements OnInit {
+  [x: string]: any;
   flight: Flight ={
     destination: '',
     origin: '',
@@ -21,7 +22,7 @@ export class ViewFlightsComponent implements OnInit {
   }
   flightsArray=[];
   component: any;
-    
+
     constructor(
       private firestore:AngularFirestore,
       private router: Router,

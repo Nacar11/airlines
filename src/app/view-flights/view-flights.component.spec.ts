@@ -42,7 +42,6 @@ fdescribe('ViewFlightsComponent', () => {
 
 
   beforeEach(async () => {
-
     await TestBed.configureTestingModule({
       declarations: [ ViewFlightsComponent ],
       imports: [CommonServiceModuleStubModule, RouterTestingModule],
@@ -75,8 +74,25 @@ fdescribe('ViewFlightsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Cancel Flight', () => {
-
+  it('should cancelFlight', () => {
+    component.flightsArray = [{
+      id:"1",
+        destination:"Minglanilla",
+        origin:"Pardo",
+        departure:"2022-07-17T11:15",
+        arrival:"2022-07-18T11:15",
+        code:"44A",
+        status:"Available"
+    }];
+   
+    console.log(component.flightsArray);
+    let mySpy = spyOn(component, "cancelFlight").and.callThrough();
+    fixture.detectChanges();
+    mySpy.and.returnValue();
+    component.cancelFlight(1);
+    adminService.cancelFlight(1);
+    expect(mySpy).toHaveBeenCalled();
+    expect(adminService.cancelFlight).toHaveBeenCalled();
   });
 
   it(`should navigate to destination`, () => {

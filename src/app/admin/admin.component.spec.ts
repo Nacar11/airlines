@@ -16,13 +16,15 @@ import { By } from '@angular/platform-browser';
 
 const data = from(Users);
 
-const collectionStub = {
-  snapshotChanges: jasmine.createSpy('snapshotChanges').and.returnValue(data)
-}
 
-const angularFirestoreStub = {
-  collection: jasmine.createSpy('collection').and.returnValue(collectionStub)
-}
+const insideCollection = jasmine.createSpyObj('collection', ['doc','snapshotChanges','valueChanges']);
+const insideDocs = jasmine.createSpyObj('doc', ['get','update','delete','set']);
+
+const fakeAfs = jasmine.createSpyObj('AngularFirestore', ['collection']);
+fakeAfs.collection.and.returnValue(insideCollection);
+insideCollection.snapshotChanges.and.returnValue(data);
+insideCollection.doc.and.returnValue(insideDocs);
+insideDocs.get.and.returnValue(data);
 
 fdescribe('AdminComponent', () => {
   let component: AdminComponent;
@@ -47,7 +49,7 @@ fdescribe('AdminComponent', () => {
          },
         {
           provide: AngularFirestore,
-          useValue: angularFirestoreStub,
+          useValue: fakeAfs,
         },
         {
           provide: UserService,
@@ -68,7 +70,7 @@ fdescribe('AdminComponent', () => {
   });
   it('should create', () => {
     expect(component).toBeTruthy();
-    expect(angularFirestoreStub.collection).toHaveBeenCalledWith('User');
+    expect(fakeAfs.collection).toHaveBeenCalledWith('User');
   });
 
   it('should contain users', () => {

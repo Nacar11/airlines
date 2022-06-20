@@ -1,19 +1,20 @@
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { UserService } from '../services/user.service';
+import { AdminService } from '../services/admin.services';
 import { User } from '../models/User';
 import { from } from 'rxjs/internal/observable/from';
 import { TestBed } from '@angular/core/testing';
 import { EMPTY } from 'rxjs/internal/observable/empty';
 import {Users} from '../mockdata/user'
 import { Auth, user } from '@angular/fire/auth';
+import { Flights } from '../mockdata/flights';
 
 
-fdescribe('UserService', () => {
-    let service: UserService;
+fdescribe('AdminService', () => {
+    let service: AdminService;
     let afs: AngularFirestore;
     let auth: Auth;
 
-    const data = from(Users);
+    const data = from(Flights);
     
     const insideCollection = jasmine.createSpyObj('collection', ['doc','valueChanges','add']);
     const insideDocs = jasmine.createSpyObj('doc', ['get','update','delete','set']);
@@ -30,39 +31,45 @@ fdescribe('UserService', () => {
         });
 
         afs = TestBed.inject(AngularFirestore);
-        service = TestBed.inject(UserService);
+        service = TestBed.inject(AdminService);
     });
 
     it('should be created', () => {
         expect(service).toBeTruthy();
-        expect(fakeAfs.collection).toHaveBeenCalledWith('User');
+        expect(fakeAfs.collection).toHaveBeenCalledWith('Flight');
     });
 
-    it('should get all users', (done: DoneFn)  => {
+    it('should get all flights', (done: DoneFn)  => {
         let data = [];  
-        service.getUsers().subscribe((value) =>  {
+        service.viewFlights().subscribe((value) =>  {
             data.push(value);
             done();
         });
-        expect(data).toEqual(Users);
+        expect(data).toEqual(Flights);
     }); 
 
-    it('should add user', (done: DoneFn)  => {
+    it('should add flight', (done: DoneFn)  => {
 
         var payload: {
-            name: string;
-            email: string;
-            password: string;
+            destination: string;
+            origin: string;
+            departure: string;
+            arrival: string;
+            code: string;
+            status: string;
           };
           payload = {
-            name: 'james',
-            email: 'james@gmail.com',
-            password: 'james123',
+            destination:"Minglanilla",
+            origin:"Pardo",
+            departure:"2022-07-17T11:15",
+            arrival:"2022-07-18T11:15",
+            code:"44A",
+            status:"Available"
           };
 
           let data = [];  
 
-          service.addUser(payload).subscribe((value) =>  {
+          service.addFlight(payload).subscribe((value) =>  {
             data.push(payload);
             done();
         });
@@ -71,16 +78,22 @@ fdescribe('UserService', () => {
     }); 
 
 
-    it('should delete user', (done: DoneFn)  => {
+    it('should delete flight', (done: DoneFn)  => {
         var payload: {
-            name: string;
-            email: string;
-            password: string;
+            destination: string;
+            origin: string;
+            departure: string;
+            arrival: string;
+            code: string;
+            status: string;
           };
           payload = {
-            name: 'james',
-            email: 'james@gmail.com',
-            password: 'james123',
+            destination:"Minglanilla",
+            origin:"Pardo",
+            departure:"2022-07-17T11:15",
+            arrival:"2022-07-18T11:15",
+            code:"44A",
+            status:"Available"
           };
 
           let data = [payload];  
@@ -91,17 +104,7 @@ fdescribe('UserService', () => {
         expect(data).not.toContain(payload);
     }); 
 
-    it('should book flight', (done: DoneFn)  => {
-          let data = [];  
-          var code = 'A32'
-          data.push(code);
-          done();
-          
-        expect(data).toContain(code);
-    }); 
-    }); 
-
  
     
 
-
+});

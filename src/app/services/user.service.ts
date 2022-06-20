@@ -10,6 +10,8 @@ export class UserService {
    userCollection: AngularFirestoreCollection<User>;
     user: Observable<User[]>;
     userDoc: AngularFirestoreDocument<User>;
+    id: any; 
+    i: any;
 
     constructor(public afs: AngularFirestore) {
         this.userCollection = this.afs.collection('User');
@@ -25,27 +27,43 @@ export class UserService {
 
     }
 
+    getId(uid:string, i:any){
+        this.id = uid;
+        this.i = i;
+        console.log(this.i)
+        console.log(i)
+        console.log(this.id);
+        console.log(uid);
+    }
+
+    returnID(){
+        return this.id;
+    }
+
+    returnIndex(){
+        return this.i;
+    }
+
     getUsers(){
         return this.user;
     }
 
     addUser(user: User){
         this.userCollection.add(user);
-    }
-
-    loginUser(user: User){
-        
+        return this.user;
     }
 
     deleteUser(user: User){
         this.userDoc = this.afs.doc(`User/${user.id}`);
         this.userDoc.delete();
+        return this.user;
+        
     }
 
     bookFlight(_code: any, id:any){
-        console.log(id);
         this.userDoc = this.afs.doc(`User/${id}`);
         this.userDoc.update({bookedFlights: _code});
+        return this.user;
     }
 
     
