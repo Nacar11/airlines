@@ -22,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: FlightsComponent
+    component: LoginComponent
   },
   {
     path: 'admin/viewUsers',

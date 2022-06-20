@@ -11,14 +11,17 @@ export class AdminService {
     flightDoc: AngularFirestoreDocument<Flight>;
 
     constructor(public afs: AngularFirestore) {
+        // this.flightCollection = this.afs.collection('Flight');
+        // this.flight = this.flightCollection.snapshotChanges().pipe(map(changes => {
+        //     return changes.map(a => {
+        //         const data = a.payload.doc.data() as Flight;
+        //         data.id = a.payload.doc.id;
+        //         return data;
+        //     });
+        // }));
+
         this.flightCollection = this.afs.collection('Flight');
-        this.flight = this.flightCollection.snapshotChanges().pipe(map(changes => {
-            return changes.map(a => {
-                const data = a.payload.doc.data() as Flight;
-                data.id = a.payload.doc.id;
-                return data;
-            });
-        }));
+        this.flight = this.afs.collection('Flight').valueChanges();
     }
 
     viewFlights(){
@@ -27,11 +30,13 @@ export class AdminService {
 
     addFlight(flight: Flight){
         this.flightCollection.add(flight);
+        return this.flight;
     }
 
     cancelFlight(id: any){
         this.flightDoc = this.afs.doc(`Flight/${id}`);
         this.flightDoc.update({status: 'Cancelled'});
+        return this.flight;
     }
 
     

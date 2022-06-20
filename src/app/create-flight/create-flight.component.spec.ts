@@ -18,7 +18,7 @@ fdescribe('CreateFlightComponent', () => {
 
   const data = from(Flights);
     
-    const insideCollection = jasmine.createSpyObj('collection', ['doc','snapshotChanges']);
+    const insideCollection = jasmine.createSpyObj('collection', ['doc','snapshotChanges','valueChanges']);
     const insideDocs = jasmine.createSpyObj('doc', ['get','update','delete','set']);
 
     const fakeAfs = jasmine.createSpyObj('AngularFirestore', ['collection']);

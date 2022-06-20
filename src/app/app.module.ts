@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -40,9 +40,10 @@ import { ViewFlightsComponent } from './view-flights/view-flights.component';
     ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideDatabase(() => getDatabase()),
-    NgbModule
+    NgbModule,
+    AngularFireAuthModule
   ],
-  providers: [UserService, AdminService],
+  providers: [UserService, AdminService, AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

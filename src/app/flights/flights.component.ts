@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
@@ -9,12 +9,14 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./flights.component.scss'],
 })
 export class FlightsComponent implements OnInit {
+  id: any;
+  currentUser: any;
   flightsArray = [];
   users = [];
   constructor(
     private router: Router,
     private firestore: AngularFirestore,
-    private userService: UserService
+    private userService: UserService,
   ) {}
 
   ngOnInit() {
@@ -46,15 +48,21 @@ export class FlightsComponent implements OnInit {
           };
         });
       });
-  }
+      this.id = this.userService.returnID();
+      console.log(this.id);
+      this.currentUser = this.userService.returnIndex();
+      console.log(this.currentUser);
+  };
 
   nav(destination: string) {
     this.router.navigate([destination]);
   }
 
   bookFlight(i: number) {
-    this.userService.bookFlight(this.flightsArray[i].code, 'XARjQCXRJOaFSEZEM8Hz');
+    this.userService.bookFlight(this.flightsArray[i].code, this.id);
     console.log(this.flightsArray[i].code);
     console.log('this has been called');
   }
-}
+
+    
+  }
